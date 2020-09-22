@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      #mouse {
+        margin: 20px auto;
+        width: 300px;
+        height: 200px;
+        border: black solid 1px;
+      }
+      #message {
+        margin: 10px auto;
+        width: 300px;
+        height: 20px;
+        border: black solid 1px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="mouse"></div>
+    <div id="message"></div>
+  </body>
+
+  <script>
+    var mouse = document.getElementById("mouse");
+    var message = document.getElementById("message");
+    var x = 0;
+    var y = 0;
+
+    mouse.onmousemove = function (e) {
+      e = e || window.e;
+
+      x = e.clientX;
+      y = e.clientY;
+
+      message.innerHTML = "x=" + x + ", y=" + y;
+
+      return false;
+    };
+
+    mouse.onmouseleave = function () {
+      message.innerHTML = "x=" + 0 + ", y=" + 0;
+    };
+  </script>
+</html>
