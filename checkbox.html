@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        margin: 100px auto;
+        text-align: center;
+        font: 28px "微软雅黑";
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      Who you love?
+      <br />
+      <input type="checkbox" id="checkallbox" /> Collect all/None
+      <br />
+      <input type="checkbox" name="items" />Toivo
+      <input type="checkbox" name="items" />Voitto
+      <input type="checkbox" name="items" />Taikka
+      <input type="checkbox" name="items" />lemppi
+      <br />
+      <input type="button" id="collectall" value="collectall" />
+      <input type="button" id="none" value="none" />
+      <input type="button" id="reverse" value="reverse" />
+      <input type="button" id="submit" value="submit" />
+    </form>
+  </body>
+  <script>
+    window.onload = function () {
+      var items = document.getElementsByName("items");
+      var checkallbox = document.getElementById("checkallbox");
+      var but1 = document.getElementById("collectall");
+      var but2 = document.getElementById("none");
+      var but3 = document.getElementById("reverse");
+      var but4 = document.getElementById("submit");
+
+      but1.onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = true;
+        }
+        checkallbox.checked = true;
+      };
+
+      but2.onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = false;
+        }
+        checkallbox.checked = false;
+      };
+
+      but3.onclick = function () {
+        checkallbox.checked = true;
+
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = !items[i].checked;
+
+          if (!items[i].checked) {
+            checkallbox.checked = false;
+          }
+        }
+      };
+
+      but4.onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].checked) {
+            alert(items[i].nextSibling.nodeValue);
+          }
+        }
+      };
+      checkallbox.onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = this.checked;
+        }
+      };
+
+      for (var i = 0; i < items.length; i++) {
+        items[i].onclick = function () {
+          checkallbox.checked = true;
+
+          for (var j = 0; j < items.length; j++) {
+            if (!items[j].checked) {
+              checkallbox.checked = false;
+
+              break;
+            }
+          }
+        };
+      }
+    };
+  </script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      th,
+      td {
+        border-collapse: collapse;
+        text-align: center;
+        margin: 30px auto;
+        border: black solid 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="info">
+      <th>Name</th>
+      <th>Email</th>
+      <th>Salary</th>
+      <th></th>
+      <tr>
+        <td>toivo</td>
+        <td>toivo@gmail.com</td>
+        <td>4000</td>
+        <td><a href="javascritp:;">delet</a></td>
+      </tr>
+    </table>
+
+    <table>
+      <th colspan="2"><h4>输入内容</h4></th>
+      <tr>
+        <td>name:</td>
+        <td><input type="text" /></td>
+      </tr>
+
+      <tr>
+        <td>email:</td>
+        <td><input type="text" /></td>
+      </tr>
+
+      <tr>
+        <td>salary:</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">submit</button></td>
+      </tr>
+    </table>
+  </body>
+  <script>
+    window.onload = function () {
+      var info = document.getElementById("info");
+
+      var a = document.getElementsByTagName("a");
+      for (var i = 0; i < a.length; i++) {
+        a[i].onclick = function () {
+          var tr = this.parentNode.parentNode;
+          tr.parentNode.removeChild(tr);
+        };
+      }
+      
+    };
+  </script>
+</html>

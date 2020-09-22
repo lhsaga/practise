@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px
+        }
+
+        a {
+            text-decoration: none;
+            color: deeppink;
+          
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            display: none;
+            text-align: center;
+            font:50px/200px Arial;
+        }
+        #div1 {
+            display:block;
+            position: absolute;
+            z-index: -1;
+        }
+
+        #div2 {
+            background-color: lightblue;
+         
+        }
+
+        #div3 {
+            background-color: yellow;
+            
+        }
+
+       :target {
+            display:block
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#div1">TT</a>
+    <a href="#div2">OOO</a>
+    <a href="#div3">GGG</a>
+    <div id="div1">123</div>
+    <div id="div2">456</div>
+    <div id="div3">789</div>
+    
+   
+    
+
+
+
+
+</body>
+
+</html>

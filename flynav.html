@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/all.min.css">
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #warp {
+            width: 60px;
+            height: 60px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            position:fixed;
+        }
+
+        button {
+            left: 0px;
+            top:0px;
+            width: 36px;
+            height: 36px;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: -1px 1px 3px;
+            outline: none;
+            position: absolute;
+            margin: 12px;
+        }
+        button:hover{
+            cursor:pointer;
+
+        }
+
+        #warp>.inner,
+        #warp>.home {
+            height: 100%;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+
+        }
+
+        #warp>.home {
+            transition: 1s;
+        }
+
+        i {
+            font-size: 26px;
+            color: rgb(80, 73, 73);
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id=warp>
+        <div class=inner>
+            <button><i class="fas fa-sync"></i></button>
+            <button><i class="fas fa-share"></i></button>
+            <button><i class="fas fa-user"></i></button>
+            <button><i class="fas fa-map-marker-alt"></i></button>
+            <button><i class="fas fa-phone-alt"></i></button>
+        </div>
+        <div class=home id=test>
+            <button><i class="fas fa-cog"></i></button>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    window.onload = function () {
+
+        var homeBtn = document.querySelector(".home")
+        var button = document.querySelectorAll("#warp> .inner> button")
+        var flag = true
+        var c = 140
+        function fn(){
+            
+            this.style.transition= "0.3s"
+            this.style.transform="rotate(-360deg) scale(1)"
+            this.style.opacity=1
+            this.removeEventListener("transitionend",fn)
+        }
+
+        for(var i=0; i<button.length;i++){
+            button[i].onclick=function(){
+            this.style.transform="rotate(-360deg) scale(2)"
+            this.style.opacity=0.1
+            this.style.transition="0.3s"
+            this.addEventListener("transitionend",fn)
+            }
+            
+        }
+
+        homeBtn.onclick = function () {
+            if (flag) {
+                this.style.transform = "rotate(-360deg)"
+                for (var i = 0; i < button.length; i++) {
+                    
+                    button[i].style.transform="rotate(-360deg) scale(1)"
+                    button[i].style.left = -getpoint(c, 90 * i / (button.length - 1)).x + "px"
+                    button[i].style.top = -getpoint(c, 90 * i / (button.length - 1)).y + "px"
+                    button[i].style.transition = 0.5+ (i * 0.4) + "s"
+                    
+                    }
+            } else {
+                this.style.transform = "rotate(0deg)"
+                for (var i = 0; i < button.length; i++) {
+                    button[i].style.transition = 0.4 + ((button.length-1-i) * 0.5) + "s"
+                    button[i].style.transform="rotate(360deg) scale(1)"
+                    button[i].style.left = 0 + "px"
+                    button[i].style.top = 0 + "px"
+                    }
+            }
+
+                flag=!flag
+                
+                
+            }
+
+        
+        function getpoint(c, deg) {
+                var x = Math.round(c * Math.sin(deg * Math.PI / 180))
+                var y = Math.round(c * Math.cos(deg * Math.PI / 180))
+                return { x: x, y: y }
+        }
+            
+        
+
+    }
+
+</script>
+
+</html>

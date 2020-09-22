@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #wrap{            
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 2px solid;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            
+            border-radius: 50%;
+        }
+
+        div.hou{
+            position: absolute;
+            width:8px;
+            height:100px;
+            background-color: black;
+            left: 196px;
+            top:100px;
+            transform-origin: center bottom;
+
+        }
+        div.min{
+            position: absolute;
+            width:6px;
+            height:140px;
+            background-color: blue;
+            left: 197px;
+            top:60px;
+            transform-origin: center bottom;
+
+
+        }
+        div.sec{
+            position: absolute;
+            width:4px;
+            height:160px;
+            background-color: red;
+            left: 198px;
+            top:40px;
+            transform-origin: center bottom;
+
+
+        }
+        div.icon{
+            position: absolute;
+            width:20px;
+            height:20px;
+            background-color:gold;
+            border-radius: 50%;
+            left: 190px;
+            top:190px;
+            text-align: center;
+
+        }
+         ul{
+            list-style: none;
+                }
+        ul>li{
+            position:absolute;
+            width: 6px;
+            height: 6px;
+            left: 197px;
+            background-color:forestgreen;
+            transform-origin: center 200px;
+            border-radius: 50%;
+        }
+
+        ul>li:nth-child(5n+1){
+            height: 20px;
+            border-radius: 0%;
+            background-clip: content-box;
+            background-color: rgb(24, 105, 129);
+            border:black solid 1px;
+            border-top:none;
+            box-sizing: border-box;
+            padding: 1px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <ul></ul>
+    <div class="hou"></div>
+    <div class="min"></div>
+    <div class="sec"></div>
+    <div class="icon">H</div>
+</div>    
+<script type="text/javascript">
+window.onload=function(){
+    var ul=document.querySelector("#wrap>ul")
+    var li=""
+    var deg=document.createElement("style")
+    var degTxt=""
+    for(var i=0;i<60;i++){
+        li+="<li></li>"
+        degTxt+="ul>li:nth-child("+(i+1)+"){transform:rotate("+(i*6)+"deg)}"
+    ul.innerHTML=li
+    deg.innerHTML=degTxt
+    document.head.appendChild(deg)
+    }
+
+    var hou=document.querySelector("#wrap>.hou")
+    var min=document.querySelector("#wrap>.min")
+    var sec=document.querySelector("#wrap>.sec")
+
+    setInterval(move,1000)
+    function move(){
+        var date= new Date()
+        var s=date.getSeconds()
+        var m=date.getMinutes()+s/60
+        var h=date.getHours()+m/60
+        
+        sec.style.transform="rotate("+(6*s)+"deg)"
+        min.style.transform="rotate("+(6*m)+"deg)"
+        hou.style.transform="rotate("+(30*h)+"deg)"
+    }
+    
+}
+
+
+</script>
+</body>
+</html>

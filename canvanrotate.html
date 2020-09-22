@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        html,body{
+            height: 100%;
+            overflow: hidden;
+           
+        }
+        #test{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+         
+        }
+        #test > canvas{
+            
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div id=test>
+        <canvas height="300" width="300"></canvas>
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload=function(){
+        var canvas=document.querySelector("canvas")
+        var flag=0
+        var cont=0
+        var contflag=0
+        var i=60
+        var deg=0
+
+        if(canvas.getContext){ 
+            
+            setInterval(function(){
+            var pen=canvas.getContext("2d")
+            flag+=3
+            if(cont==100){
+                contflag=-1
+            }else if(cont==0){
+                contflag=1
+            }
+            deg=(cont+=contflag)/i
+
+            pen.clearRect(0,0, canvas.width,canvas.height)
+            pen.save()   
+            pen.fillStyle="deeppink"        
+            pen.translate(150,150)
+            pen.rotate(flag*Math.PI/180)
+            pen.scale(deg,deg)
+            pen.beginPath()            
+            pen.fillRect(-50,-50, 100, 100)
+            pen.restore()
+
+        },1000/50)
+            
+        }
+
+       
+
+
+    }
+
+</script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap {
+            position: absolute;
+            height: 800px;
+            width: 800px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            perspective: 300px;
+
+        }
+
+        #wrap>.box {
+            position: absolute;
+            width: 300px;
+            height: 500px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transition: 10s transform;
+            /*    transform-origin: center center -28.8px; */
+            transform-style: preserve-3d;
+        }
+
+        #wrap>.box>div {
+            position: absolute;
+            background-color: pink;
+            text-align: center;
+            width: 300px;
+            height: 500px;
+            font: 50px/100px "微软雅黑";
+            border: springgreen solid 1px;
+            /* transform-origin: center center -28.8px; */
+        }
+
+        /*     .box :nth-child(1){
+    }
+    .box :nth-child(2){
+        transform:  rotateY(120deg) ;
+    }
+    .box :nth-child(3){
+        transform: rotateY(240deg);
+    }*/
+
+    #wrap:hover > .box{
+        transform: rotateY(360deg);
+    }
+    </style>
+
+</head>
+
+<body>
+    <div id=wrap>
+        <div class=box>
+            <!--  <div>1</div>
+            <div>2</div>
+            <div>3</div> -->
+        </div>
+    </div>
+</body>
+<script stype="text/javascript">
+
+    window.onload = function () {
+        createRing(11)
+      }
+
+    function createRing(n) {
+        var degIn = 180 - 360/n
+        var degOut = 360/n
+        var cssstyle = document.createElement("style")
+        var box = document.querySelector("#wrap>.box")
+        var divlab =""
+        var cssText =""
+
+        for (var i = 0; i < n; i++) {
+            divlab += "<div>"+(i+1)+"</div>"
+            cssText += ".box>div:nth-child(" + (i + 1) + "){transform: rotateY(" + (i*degOut) + "deg) ;}"
+        }
+        box.innerHTML = divlab
+      
+        var width= document.querySelector("#wrap>.box >div")        
+        var length= (width.offsetWidth)/2*Math.tan((degIn/2)*Math.PI/180)
+
+        cssText+="#wrap>.box {transform-origin: center center "+(-length)+"px;} "
+        cssText+="#wrap>.box > div {transform-origin: center center "+(-length)+"px;} "
+        cssstyle.innerHTML=cssText  
+        document.head.appendChild(cssstyle)
+        
+
+    }
+</script>
+
+
+</html>

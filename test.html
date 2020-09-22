@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        pad: 0;
+      }
+      html,
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        overflow: hidden;
+      }
+      #test {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="test" width="300" height="300"></canvas>
+  </body>
+  <script>
+    window.onload = function () {
+      var canvas = document.querySelector("canvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        ctx.save();
+        ctx.fillStyle = "deeppink";
+        ctx.beginPath();
+        ctx.fillRect(50, 50, 100, 100);
+        ctx.restore();
+        var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        var color= getcolor(imgdata,52,52)
+
+        for (var i = 0; i < imgdata.width; i++) {
+          setcolor(imgdata, i, 40, color);
+        }
+
+        ctx.putImageData(imgdata, 0, 0);
+      }
+      function getcolor(imgdata, x, y) {
+        var color = [];
+        var data = imgdata.data;
+        var w = imgdata.width;
+
+        color[0] = data[(y * w + x) * 4];
+        color[1] = data[(y * w + x) * 4 + 1];
+        color[2] = data[(y * w + x) * 4 + 2];
+        color[3] = data[(y * w + x) * 4 + 3];
+        return color;
+      }
+
+      function setcolor(imgdata, x, y, color) {
+        var data = imgdata.data;
+        var w = imgdata.width;
+
+        data[(y * w + x) * 4] = color[0];
+        data[(y * w + x) * 4 + 1] = color[1];
+        data[(y * w + x) * 4 + 2] = color[2];
+        data[(y * w + x) * 4 + 3] = color[3];
+      }
+    };
+  </script>
+</html>

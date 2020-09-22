@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        #wind {
+            width: 660px;
+            height: 660px;
+            margin: auto;
+/*             transition: 20s;
+ */            animation-iteration-count: infinite;
+
+
+        }
+
+        #wind>div {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            float: left;
+            background-color: deeppink;
+        }
+        #wind>div:nth-child(2),#wind>div:nth-child(8){
+            transform: rotate(45deg);
+            border-radius: 0 200px ;
+            background-color: green;
+        }
+        #wind>div:nth-child(4),#wind>div:nth-child(6){
+            transform: rotate(45deg);
+            border-radius:200px 0;
+            background-color:rebeccapurple;
+        }
+        
+        #wind>div:nth-child(5){
+            border-radius: 50%;
+            transform: scale(0.8,0.8);
+        }
+
+        #wind>div:nth-child(1),#wind>div:nth-child(9){
+            transform: scale(1.6,1.6);
+            border-radius:0 200px ;
+            background-color:gold;}
+
+            
+        #wind>div:nth-child(3),#wind>div:nth-child(7){
+            transform: scale(1.6,1.6);
+            border-radius:200px 0 ;
+            background-color:deeppink;}
+
+            #wind:hover{
+                transform: rotate(3800deg);
+                animation-iteration-count: infinite;
+
+            }
+
+
+    </style>
+</head>
+
+<body>
+    <div id=wind>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <script type="text/javascript">
+    var inter=document.querySelector("#wind")
+    var flag=1
+    setInterval(function(){
+        flag++
+        inter.style.transform = 'rotate('+flag+'deg)';
+},8)
+
+
+    </script>
+
+</body>
+
+</html>

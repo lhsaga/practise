@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      #mosaic {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="mosaic" width="300" height="400"></canvas>
+  </body>
+  <script type="text/javascript">
+    window.onload = function () {
+      /** @type {HTMLCanvasElement} */
+      var oc = document.querySelector("#mosaic");
+      if (oc.getContext) {
+        var pen = oc.getContext("2d");
+        var img = new Image();
+        var times = 20;
+        img.src = "4.jpg";
+
+        setInterval(function () {
+          times--;
+          if (times == 0) {
+            times = 20;
+          }
+          draw(times);
+          /* img.onload = function (times) {
+            
+          }; */
+        }, 1000);
+
+        function draw(times) {
+          pen.drawImage(img, 0, 0, oc.width, oc.height);
+          var imgdata = pen.getImageData(0, 0, oc.width, oc.height);
+          var newImage = pen.createImageData(oc.width, oc.height);
+          var box = times;
+
+          for (var i = 0; i < imgdata.width / box; i++) {
+            for (var a = 0; a < imgdata.height / box; a++) {
+              var color = getcolor(
+                imgdata,
+                i * box + Math.floor(Math.random() * box),
+                a * box + Math.floor(Math.random() * box)
+              );
+
+              for (var c = 0; c < box; c++) {
+                for (var d = 0; d < box; d++) {
+                  setcolor(newImage, i * box + c, a * box + d, color);
+                }
+              }
+            }
+          }
+          pen.clearRect(0, 0, oc.width, oc.height);
+          pen.putImageData(newImage, 0, 0);
+        }
+        function getcolor(imgdata, x, y) {
+          var color = [];
+          var data = imgdata.data;
+          var w = imgdata.width;
+
+          color[0] = data[(y * w + x) * 4];
+          color[1] = data[(y * w + x) * 4 + 1];
+          color[2] = data[(y * w + x) * 4 + 2];
+          color[3] = data[(y * w + x) * 4 + 3];
+          return color;
+        }
+
+        function setcolor(imgdata, x, y, color) {
+          var data = imgdata.data;
+          var w = imgdata.width;
+
+          data[(y * w + x) * 4] = color[0];
+          data[(y * w + x) * 4 + 1] = color[1];
+          data[(y * w + x) * 4 + 2] = color[2];
+          data[(y * w + x) * 4 + 3] = color[3];
+        }
+      }
+    };
+  </script>
+</html>

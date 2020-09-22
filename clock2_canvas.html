@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #clock {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #clock>canvas {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <canvas height="400" width="400"></canvas>
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+
+        var canvas = document.querySelector("canvas")
+        if (canvas.getContext) {
+            var pen = canvas.getContext("2d")
+
+            setInterval(function (){
+                pen.clearRect(0,0,canvas.width,canvas.height)
+                move()
+            }, 1000)
+
+            function move() {
+
+                pen.save()
+                pen.translate(200, 200)
+                pen.lineWidth = 8
+                pen.lineCap = "round"
+
+                pen.save()
+                pen.strokeStyle = "darkblue"
+                pen.beginPath()
+                pen.arc(0, 0, 140, 0, 360 * Math.PI / 180)
+                pen.stroke()
+                pen.restore()
+
+                pen.save()
+                pen.beginPath()
+                for (var i = 0; i < 12; i++) {
+                    pen.rotate(30 * Math.PI / 180)
+                    pen.moveTo(0, 100)
+                    pen.lineTo(0, 120)
+                }
+                pen.stroke()
+                pen.restore()
+
+                pen.save()
+                pen.lineWidth = 4
+                pen.beginPath()
+                for (var i = 0; i < 60; i++) {
+                    if (i % 5 != 0) {
+                        pen.moveTo(0, 117)
+                        pen.lineTo(0, 120)
+                    }
+                    pen.rotate(6 * Math.PI / 180)
+                }
+                pen.stroke()
+                pen.restore()
+
+                var date = new Date()
+                var s = date.getSeconds()
+                var m = date.getMinutes() + s / 60
+                var h = date.getHours() + m / 60
+                /* h=h>12?h-12:h */
+
+                pen.save()
+                pen.lineWidth = 14
+                pen.rotate(h * 30 * Math.PI / 180)
+                pen.beginPath()
+                pen.moveTo(0, 20)
+                pen.lineTo(0, -80)
+                pen.stroke()
+                pen.restore()
+
+                pen.save()
+                pen.lineWidth = 10
+                pen.rotate(m * 6 * Math.PI / 180)
+                pen.beginPath()
+                pen.moveTo(0, 28)
+                pen.lineTo(0, -102)
+                pen.stroke()
+                pen.restore()
+
+                pen.save()
+                pen.lineWidth = 10
+                pen.strokeStyle = "red"
+                pen.rotate(s * 6 * Math.PI / 180)
+                pen.beginPath()
+                pen.moveTo(0, 30)
+                pen.lineTo(0, -83)
+                pen.stroke()
+                pen.restore()
+
+                for (var i = 0; i < 10; i++) {
+                    pen.save()
+                    pen.lineWidth = (10 - i)
+                    pen.strokeStyle = "red"
+                    pen.rotate(s * 6 * Math.PI / 180)
+                    pen.beginPath()
+                    pen.moveTo(0, -83)
+                    pen.lineTo(0, -83 - i * 2)
+                    pen.stroke()
+                    pen.restore()
+                }
+
+                pen.save()
+                pen.fillStyle = "gold"
+                pen.lineWidth = 20
+                pen.beginPath()
+                pen.arc(0, 0, 10, 0, 360 * Math.PI / 180)
+                pen.fill()
+                pen.restore()
+                pen.restore()
+            }
+
+
+
+        }
+
+
+
+    }
+
+
+
+</script>
+
+</html>

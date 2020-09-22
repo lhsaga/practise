@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body{
+        text-align: center;
+        background-color: black;
+        overflow: hidden;
+    }
+    h1{
+        font: bold 120px "微软雅黑";
+        margin-top: 40px ;
+        display: inline-block;
+        color:rgba(175, 172, 172, 0.3);
+        background: linear-gradient(120deg, rgba(255,255,255,0)70px, rgb(65, 202, 60)100px, rgba(255,255,255,0)200px);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-repeat: no-repeat;
+/*         transition: 1s;
+ */    }
+  /*   h1:hover{
+        background-position:800px 0;
+    }
+     */
+    </style>
+
+</head>
+
+<body>
+    <h1>
+        Toivo&Voitto
+    </h1>
+</body>
+<script type="text/javascript">
+var text=document.querySelector("h1")
+var flag=-130
+setInterval(function(){
+    flag+=10 
+    if(flag==800){
+        flag=-130;
+    }
+    text.style.backgroundPosition=flag +"px"
+}, 30);
+</script>
+</html>
