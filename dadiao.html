@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        display: flex;
+        justify-content: center;
+    }
+   .two {
+            
+        width: 100px;
+        height: 100px;
+        margin-top: 50px;
+        background-color: chocolate;
+    }
+    .one{
+        width: 200px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: chocolate;
+    }
+
+    .one:first-child{
+        margin-right: -60px;
+    }
+    .one:last-child{
+        margin-left: -60px;
+    }
+
+    .three{
+        width: 100px;
+        height: 100px;
+        background-color: chocolate;
+        margin: 0 auto;   
+        border-radius: 0  0 50% 50%;   
+
+    }
+</style>
+
+<body>
+    <div id="box">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="one"></div>
+</div>
+    <div id="dick" class="three"></div>
+</body>
+<script>
+    window.onload=function(){
+        var dick= document.getElementById("dick")
+        document.onmousewheel=function(e){
+            e=e || window.e
+           
+
+            if(e.wheelDelta>0){
+                
+
+                 dick.style.height= dick.clientHeight - 10 +"px"
+            }else{
+                dick.style.height= dick.clientHeight + 10 +"px"
+            }
+        }
+
+
+
+
+    }
+    
+</script>
+</html>

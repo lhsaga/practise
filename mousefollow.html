@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            position: absolute;
+            display: block;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <img id="pic" src="2 (2).jpg">
+</body>
+<script>
+window.onload=function(){
+ 
+ var pic=document.getElementById("pic")
+
+ document.onmousemove=function(e){
+     e=e || window.e
+
+var st=document.body.scrollTop || document.documentElement.scrollTop
+var sl=document.body.scrollLeft || document.documentElement.scrollLeft
+var x= e.pageX
+var y=e.pageY
+
+pic.style.left=x +sl+"px"
+pic.style.top=y  +st+"px"
+
+ }
+
+}
+
+</script>
+</html>

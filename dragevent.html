@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    img {
+      position: absolute;
+      display: block;
+      width: 200px;
+    }
+  </style>
+  <body>
+    <img id="pic" src="2 (2).jpg" />
+  </body>
+  <script>
+    window.onload = function () {
+
+
+      var pic = document.getElementById("pic");
+
+      pic.onmousedown = function (event) {
+        event = event || event.window;
+
+        var xl = event.clientX - pic.offsetLeft;
+        var yl = event.clientY - pic.offsetTop;
+        
+
+        document.onmousemove = function (event) {
+            event = event || event.window;
+           var x = event.clientX - xl;
+        var y = event.clientY - yl;
+
+          pic.style.left = x + "px";
+          pic.style.top = y + "px";
+        };
+
+        document.onmouseup = function () {
+       
+        document.onmousemove = null;
+        document.onmouseup = null;
+      };
+      return false
+
+      };
+
+      
+    };
+  </script>
+</html>

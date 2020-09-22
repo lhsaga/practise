@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+var foo = { pName1 : 1, pName2 : [1, {foo: "bar"}, 3] }
+ 
+ var name = "pName"
+ var num  = 1;
+  
+console.log (foo[name + num]) // 1
+  
+ // -- 
+  
+ var a = 2;
+ var b = 1;
+ var c = "foo";
+  
+console.log(foo[name + a][b][c]); // bar
+</script>
+</html>
