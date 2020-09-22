@@ -33,35 +33,64 @@
       <th colspan="2"><h4>输入内容</h4></th>
       <tr>
         <td>name:</td>
-        <td><input type="text" /></td>
+        <td><input id="name" type="text" /></td>
       </tr>
 
       <tr>
         <td>email:</td>
-        <td><input type="text" /></td>
+        <td><input id="email" type="text" /></td>
       </tr>
 
       <tr>
         <td>salary:</td>
-        <td><input type="text" /></td>
+        <td><input id="salary" type="text" /></td>
       </tr>
       <tr>
-        <td colspan="2"><button type="submit">submit</button></td>
+        <td colspan="2"><button id="submit" type="submit">submit</button></td>
       </tr>
     </table>
   </body>
   <script>
+    function delet() {
+      var tr = this.parentNode.parentNode;
+      var flag = confirm("Are you sure ?");
+      if (flag) {
+        tr.parentNode.removeChild(tr);
+      }
+    }
+
     window.onload = function () {
       var info = document.getElementById("info");
-
+      var tbody = document.getElementsByTagName("tbody")[0];
       var a = document.getElementsByTagName("a");
       for (var i = 0; i < a.length; i++) {
-        a[i].onclick = function () {
-          var tr = this.parentNode.parentNode;
-          tr.parentNode.removeChild(tr);
-        };
+        a[i].onclick = delet;
       }
-      
+
+      var submit = document.getElementById("submit");
+
+      submit.onclick = function () {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var salary = document.getElementById("salary").value;
+        var tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" +
+          name +
+          "</td>" +
+          "<td>" +
+          email +
+          "</td>" +
+          "<td>" +
+          salary +
+          "</td>" +
+          "<td><a href='javascritp:;'>delet</a></td>";
+        var a = tr.getElementsByTagName("a")[0];
+        a.onclick = delet;
+
+        tbody.appendChild(tr);
+      };
     };
   </script>
 </html>
